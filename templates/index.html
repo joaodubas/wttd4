@@ -2,10 +2,34 @@
 
 <html lang="pt-br">
 <head>
-    <title>{% block title %}EventEX{% endblock title %}EventEX</title>
-<body>
+    <title>{% block title %}EventeX{% endblock title %}</title>
+    <meta charset="utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Play:400,700|Muli:300italic,400,400italic' rel='stylesheet' type='text/css' />
+    <link href="{{ STATIC_URL }}css/global.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="{% block page_id %}home{% endblock page_id %}">
     <header>
-        <h1>EventEX</h1>
+        <h1>EventeX</h1>
+        <h2>Uma nova forma de ver eventos</h2>
     </header>
+    <nav>
+        <ul class="main nav horizontal">
+            <li class="item"><a href="#" class="navigate">Home</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="main" role="main">
+            <div class="event-container">
+                <p>O evento mais sensacional do ano, depois do <strong lang="en">Dev in Rio</strong>.</p>
+                <p>Você não pode perder esta oportunidade!</p>
+                <p class="highlight">Abertura das inscrições em <span class="date">15/05/2011</span>.</p>
+                <p>Em caso de dúvidadas ou para maiores informações entrem em <a href="mailto:eventex@eventex.com.br">contato conosco</a>.</p>
+            </div>
+        </div>
+        <aside></aside>
+    </div>
+    <footer>
+        <p>Software licensiado sob <a href="#" class="license"><acronym title="DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE">WTFPL</acronym></a> &copy; 2011 <a href="mailto:joao.dubas@gmail.com">João Paulo Dubas</a></p>
+    </fotter>
 </body>
 </html>
