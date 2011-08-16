@@ -1,6 +1,6 @@
 import os
 
-ROOT = os.path.abspath(os.path.dirname(__file__))
+ROOT = os.path.dirname(os.path.abspath(__file__))
 join_root = lambda *x: os.path.join(ROOT, *x)
 
 DEBUG = True
@@ -33,7 +33,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-MEDIA_ROOT = join_root('media', 'uploasd')
+MEDIA_ROOT = join_root('media', 'uploads')
 MEDIA_URL = '/upload/'
 
 STATIC_ROOT = join_root('media', 'assets')
