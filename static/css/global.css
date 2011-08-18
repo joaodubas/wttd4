@@ -47,6 +47,15 @@ body:before, body:after {
 body:before { top: 0; }
 body:after { left: 0; }
 
+a:link, a:visited, a:hover, a:active {
+    font-weight: bold;
+    text-decoration: none;
+}
+a:link, a:visited { text-shadow: 1px 1px 0 rgba(75,75,75,0.75); }
+a:link { color: #ff8c00; }
+a:visited { color: #ffc073; }
+a:hover, a:active { color: #64a8d1; text-shadow: -1px -1px 0 rgba(75,75,75,0.75); }
+
 /**
  * UTILS
  */

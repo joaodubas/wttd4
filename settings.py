@@ -37,7 +37,6 @@ MEDIA_ROOT = join_root('media', 'uploads')
 MEDIA_URL = '/upload/'
 
 STATIC_ROOT = join_root('media', 'assets')
-
 STATIC_URL = '/static/'
 
 ADMIN_MEDIA_PREFIX = '/static/admin/'
