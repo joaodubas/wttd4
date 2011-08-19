@@ -1,0 +1,14 @@
+# dirs
+/media
+
+# python
+*.pyc
+*.pyo
+
+# general files
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
