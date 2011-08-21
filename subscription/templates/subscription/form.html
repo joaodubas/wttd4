@@ -1,0 +1,11 @@
+{% extends "subscription/base_subscription.html" %}
+
+{% block content %}
+    <form class="form-container" method="POST" action=".">
+        {% csrf_token %}
+        <ul class=" vertical field-container">
+            {{ form.as_ul }}
+        </ul>
+        <input type="submit" value="Concluir inscrição!" />
+    </form>
+{% endblock content %}

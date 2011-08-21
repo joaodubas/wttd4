@@ -1,0 +1,14 @@
+{% extends "subscription/base_subscription.html" %}
+
+{% block title %}{{ block.super }} : Sucesso{% endblock title %}
+
+{% block content %}
+    <p>Parabéns {{ subscriber.name }}, sua inscrição foi realizada com sucesso!</p>
+    <p>Em breve entraremos em contato pelo:
+        {% if subscriber.phone %}
+            telefone: {{ subscriber.phone }}.
+        {% else %}
+            e-mail: {{ subscriber.email }}.
+        {% endif %}
+    </p>
+{% endblock content %}
