@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <title>{% block title %}EventeX{% endblock title %}</title>
+    <meta charset="utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Play:400,700|Muli:300italic,400,400italic' rel='stylesheet' type='text/css' />
+    <link href="{{ STATIC_URL }}css/global.css" rel="stylesheet" type="text/css" />
+    {% block css %}{% endblock css %}
+</head>
+<body id="{% block page_id %}home{% endblock page_id %}">
+    <header>
+        <h1 class="logo">EventeX</h1>
+        <h2 class="call">Uma nova forma de ver eventos</h2>
+    </header>
+    <nav>
+        <ul class="main nav horizontal">
+            <li class="item to-home"><a href="{% url home %}" class="navigate">Home</a></li>
+            <li class="item to-subscribe"><a href="{% url subscription:subscribe %}" class="navigate">Inscrição</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="main" role="main">{% block content %}{% endblock content %}</div>
+        <aside>{% block aside %}{% endblock aside %}</aside>
+    </div>
+    <footer>
+        <p>Software licensiado sob <button href="#" class="link"><acronym title="DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE">WTFPL</acronym></button> &copy; 2011 <a href="mailto:joao.dubas@gmail.com">João Paulo Dubas</a></p>
+        <div id="license-container" class="terms">
+            <pre class="license-term">
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE  
+                    Version 2, December 2004
+
+Copyright (C) 2011 João Paulo Dubas &lt;http://dbsdev.com.br&gt;
+
+Everyone is permitted to copy and distribute verbatim or modified  
+copies of this license document, and changing it is allowed as long  
+as the name is changed.
+
+***
+
+    DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+    0. You just DO WHAT THE FUCK YOU WANT TO.
+            </pre>
+        </div>
+    </fotter>
+    {% block js %}{% endblock js %}
+</body>
+</html>
