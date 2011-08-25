@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
+from subscription.signals import email_success_subscription
 
 class Subscription(models.Model):
     name = models.CharField(max_length=128, verbose_name='Nome')
@@ -14,5 +15,6 @@ class Subscription(models.Model):
         verbose_name_plural = u'Inscrições'
     
     def __unicode__(self):
-        return '%(name)s inscrito em %(created_at)s' % (self, )
-    
+        return '%(name)s <%(email)s> inscrito em %(created_at)s' % self.__dict__
+models.signals.post_save.connect(email_success_subscription, Subscription)
+

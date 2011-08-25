@@ -71,6 +71,13 @@ TEMPLATE_DIRS = (
     join_root('templates'),
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PORT = 25
+EMAIL_USE_TLS = False
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
