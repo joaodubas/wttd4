@@ -1,0 +1,20 @@
+[
+    {
+        "pk": 1, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "joaodubas", 
+            "first_name": "", 
+            "last_name": "", 
+            "is_active": true, 
+            "is_superuser": true, 
+            "is_staff": true, 
+            "last_login": "2011-08-24 21:28:24", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$e9600$82a76be025af71821ca798af30fadb92f20bbf9a", 
+            "email": "joao.dubas@gmail.com", 
+            "date_joined": "2011-08-16 01:46:58"
+        }
+    }
+]
