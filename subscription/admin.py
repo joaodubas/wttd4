@@ -1,5 +1,7 @@
 from datetime import date
 from django.contrib import admin
+from django.conf.urls.defaults import patterns, url
+from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from subscription.models import Subscription
@@ -33,6 +35,38 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
         self.message_user(request, msg)
     mark_as_paid.short_description = _(u'Marcar inscrição como paga.')
+
+    def export_csv(self):
+        """
+        Create a csv file and return it as a HttResponse
+        """
+        attrs = ['name', 'email', 'phone', 'paid']
+        subscriptions = self.model.objects.all()
+
+        def get_model_field(name):
+            return self.model.get_field(name)
+
+        rows = []
+        for s in subscriptions:
+            row = [getattr(s, attr) for attr in attrs]
+            rows.append(','.join(row))
+        rows.insert(0, [get_model_field(attr).verbose_name for attr in attrs])
+
+        response = HttpResponse('\r\n'.join(rows), mimetype='text/css')
+        response['Content-Disposition'] = 'attachment; filename=inscricoes.csv'
+
+        return response
+    
+    def get_urls(self):
+        """
+        Override the get_urls method from ModelAdmin adding the export_subscriptions url
+        """
+        original_urls = super(SubscriptionAdmin, self).get_urls()
+        new_urls = patterns('',
+            url(r'export/$', self.admin_site.admin_view(self.export_csv), name='export_subscriptions')
+        )
+
+        return new_urls + original_urls
 
 
 admin.site.register(Subscription, SubscriptionAdmin)
