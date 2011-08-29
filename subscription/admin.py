@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from datetime import date
 from django.contrib import admin
 from django.conf.urls.defaults import patterns, url
@@ -36,7 +38,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         self.message_user(request, msg)
     mark_as_paid.short_description = _(u'Marcar inscrição como paga.')
 
-    def export_csv(self):
+    def export_csv(self, request):
         """
         Create a csv file and return it as a HttResponse
         """
@@ -44,15 +46,18 @@ class SubscriptionAdmin(admin.ModelAdmin):
         subscriptions = self.model.objects.all()
 
         def get_model_field(name):
-            return self.model.get_field(name)
+            """
+            Obtain the field of a model based on its name
+            """
+            return self.model._meta.get_field(name)
 
         rows = []
         for s in subscriptions:
             row = [getattr(s, attr) for attr in attrs]
-            rows.append(','.join(row))
-        rows.insert(0, [get_model_field(attr).verbose_name for attr in attrs])
+            rows.append(','.join(['%s' % field for field in row]))
+        rows.insert(0, ','.join([get_model_field(attr).verbose_name for attr in attrs]))
 
-        response = HttpResponse('\r\n'.join(rows), mimetype='text/css')
+        response = HttpResponse('\r\n'.join(rows), mimetype='text/csv')
         response['Content-Disposition'] = 'attachment; filename=inscricoes.csv'
 
         return response
