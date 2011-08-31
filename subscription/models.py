@@ -1,13 +1,14 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext as _
 from django.db import models
+from core.validators import cpf_validator
 from subscription.signals import email_success_subscription
 
 class Subscription(models.Model):
     name = models.CharField(max_length=128, verbose_name=_('Nome'))
-    email = models.EmailField(unique=True, verbose_name=_('E-mail'))
-    cpf = models.CharField(max_length=11, unique=True, verbose_name=_('CPF'))
-    phone = models.CharField(max_length=10, blank=True, verbose_name=_('Telefone'))
+    email = models.EmailField(blank=True, verbose_name=_('E-mail'))
+    cpf = models.CharField(max_length=11, unique=True, verbose_name=_('CPF'), validators=[cpf_validator])
+    phone = models.CharField(max_length=11, blank=True, verbose_name=_('Telefone'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Criado em'))
     paid = models.BooleanField(verbose_name=_('Pago'))
 

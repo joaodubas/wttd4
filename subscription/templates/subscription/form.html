@@ -3,9 +3,11 @@
 {% block content %}
     <form class="form-container" method="POST" action=".">
         {% csrf_token %}
+        {% spaceless %}
         <ul class=" vertical field-container">
             {{ form.as_ul }}
         </ul>
+        {% endspaceless %}
         <input type="submit" value="Concluir inscrição!" />
     </form>
 {% endblock content %}
