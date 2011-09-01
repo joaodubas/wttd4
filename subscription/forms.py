@@ -15,7 +15,7 @@ class SubscriptionForm(forms.ModelForm):
         super(SubscriptionForm, self).clean()
         if not self.cleaned_data.get('email') and \
             not self.cleaned_data.get('phone'):
-            raise forms.ValidationError(_(u'Informe o e-mail ou o telefone'))
+            raise forms.ValidationError(_(u'Informe o e-mail ou o telefone.'))
         
         return self.cleaned_data
 
