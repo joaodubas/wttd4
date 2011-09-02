@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.test import TestCase
+from django.utils.translation import ugettext as _
 from subscription.forms import SubscriptionForm
 
 class TestSubscriptionForm(TestCase):
@@ -64,3 +65,22 @@ class TestSubscriptionForm(TestCase):
 
         self.assertFalse(form.is_valid())
         self.assertTrue(form.non_field_errors())
+        self.assertTrue(_(u'Informe o e-mail ou o telefone.') in form.non_field_errors())
+
+    def test_form_email_is_already_registered(self):
+        form = SubscriptionForm({
+            'name': 'Joao Paulo Dubas',
+            'cpf': '12345678901',
+            'email': 'joao.dubas@gmail.com'
+        })
+        form.save()
+
+        new_form = SubscriptionForm({
+            'name': 'Claudio Paulo Dubas',
+            'cpf': '98765432109',
+            'email': 'joao.dubas@gmail.com'
+        })
+
+        self.assertFalse(new_form.is_valid())
+        self.assertTrue(new_form.non_field_errors())
+        self.assertTrue(_(u'E-mail já cadastrado.') in new_form.errors['__all__'])

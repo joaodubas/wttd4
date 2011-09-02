@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
-from django.utils.translation import ugettext as _
 from django.db import models
+from django.db.models import Q
+from django.utils.translation import ugettext as _
+from django.core.exceptions import ValidationError
 from core.validators import cpf_validator
 from subscription.signals import email_success_subscription
 
@@ -19,5 +21,18 @@ class Subscription(models.Model):
     
     def __unicode__(self):
         return _(u'%(name)s <%(email)s> inscrito em %(created_at)s') % self.__dict__
+
+    def clean(self):
+        if not self.email and not self.phone:
+            raise ValidationError(_(u'Informe o e-mail ou o telefone.'))
+
+        if self.email:
+            filter = Q(email=self.email)
+
+            if self.pk:
+                filter &= ~Q(pk=self.pk)
+            
+            if Subscription.objects.filter(filter).count():
+                raise ValidationError(_(u'E-mail já cadastrado.'))
 models.signals.post_save.connect(email_success_subscription, Subscription)
 

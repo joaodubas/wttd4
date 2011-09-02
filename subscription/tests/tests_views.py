@@ -15,7 +15,8 @@ class TestSubscriptionViews(TestCase):
             'name': 'Joao Paulo Dubas',
             'cpf': '12345678901',
             'email': 'joao.dubas@gmail.com',
-            'phone': ['11','12345678']
+            'phone_0': '11',
+            'phone_1': '12345678'
         }
         response = self.client.post(reverse('subscription:subscribe'), form)
 
@@ -25,7 +26,8 @@ class TestSubscriptionViews(TestCase):
         form = {
             'name': 'Joao Paulo Dubas',
             'cpf': '12345678901',
-            'phone': ['11','12345678']
+            'phone_0': '11',
+            'phone_1': '12345678'
         }
         response = self.client.post(reverse('subscription:subscribe'), form)
 
