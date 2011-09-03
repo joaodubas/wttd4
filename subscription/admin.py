@@ -27,7 +27,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         """
         Mark a queryset of subscription as paid
         """
-        count = queryset(paid=True)
+        count = queryset.update(paid=True)
 
         msg = ungettext(
             _(u'%(count)d inscrição foi marcada como paga!'),
