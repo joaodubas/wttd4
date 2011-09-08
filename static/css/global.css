@@ -96,17 +96,15 @@ input[type=submit], input[type=reset], input[type=button] {
     margin: 0; padding: 0;
 }
 
-.cf:before,
-.cf:after {
+/*
+based on: http://nicolasgallagher.com/micro-clearfix-hack/
+*/
+.cf:before, .cf:after {
     content:"";
     display:table;
 }
-.cf:after {
-    clear:both;
-}
-.cf {
-    zoom:1;
-}
+.cf:after { clear:both; }
+.cf { zoom:1; }
 
 /**
  * LAYOUT
