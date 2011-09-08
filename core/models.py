@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext as _
 from core.signals import slugify_name
+import hashlib
+import urllib
 
 # import datetime
 
@@ -20,6 +23,23 @@ class Speaker(models.Model):
 
     def __unicode__(self):
         return self.name
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('detail_speaker', (), {'pk': self.pk, 'slug': self.slug})
+    
+    @property
+    def get_avatar(self):
+        default = '%s%s' % (settings.STATIC_URL, 'images/icon/avatar.jpg', )
+        if self.avatar:
+            return self.avatar
+        elif self.contact_set.filter(kind='E').count():
+            email = self.contact_set.all()[:1][0]
+            url = 'http://www.gravatar.com/avatar/%(email_hash)s?%(qs)s'
+            url = url % {'email_hash': hashlib.md5(email.value).hexdigest(), 'qs': urllib.urlencode({'d': default, 's': '80'})}
+            return url
+        else:
+            return default
 models.signals.pre_save.connect(slugify_name, Speaker)
 
 

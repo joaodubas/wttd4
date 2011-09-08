@@ -1,0 +1,9 @@
+{% extends "core/base_speaker.html" %}
+
+{% block content %}
+    {% for speaker in speakers %}
+        {% include "core/include_speaker.html" %}
+    {% empty %}
+        <div class="no-speaker">Você chegou muito cedo, que tal fazer sua <a href="{% url subscription:subscribe %}">inscriação</a> e entraremos em contato assim que tivermos maiores detalhes sobre o evento</div>
+    {% endfor %}
+{% endblock content %}

@@ -29,6 +29,14 @@ class SpeakerTest(TestCase):
         self.assertEqual(speaker_1.slug, slugify(speaker_1.name))
         self.assertEqual(speaker_2.slug, '%s%d' % (slugify(speaker_2.name), 1))
 
+    def test_speaker_has_default_avatar(self):
+        pass
+    
+    def test_speaker_has_gravatar(self):
+        pass
+    
+    def test_speaker_has_avatar(self):
+        pass
 
 class ContactTest(TestCase):
     def setUp(self):

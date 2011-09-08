@@ -96,6 +96,18 @@ input[type=submit], input[type=reset], input[type=button] {
     margin: 0; padding: 0;
 }
 
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+.cf {
+    zoom:1;
+}
+
 /**
  * LAYOUT
  */
@@ -131,7 +143,7 @@ nav { background-color: rgba(97, 97, 97, 0.125); font-size: 0.85em; line-height:
 .navigate:link, .navigate:visited { color: #0969a3; text-shadow: 1px 1px 1px rgba(25,25,25,0.75); }
 .navigate:hover, .navigate:active { background-color: #1c0772; color: #3d9ad1; text-shadow: -1px -1px 1px rgba(25,25,25,0.75); }
 
-#home .to-home > .navigate, #subscribe .to-subscribe > .navigate {
+#home .to-home > .navigate, #subscribe .to-subscribe > .navigate, #speaker .to-speaker > .navigate {
     background-color: rgba(175, 175, 175, 0.25);
     color: #bbb;
     text-shadow: -1px -1px 1px rgba(25,25,25,0.75);
@@ -196,6 +208,20 @@ nav { background-color: rgba(97, 97, 97, 0.125); font-size: 0.85em; line-height:
     font-weight: bold;
     text-shadow: 1px 1px 1px rgba(25, 25, 25, 0.75);
 }
+
+/**
+ * SPEAKER
+ */
+.speaker { padding: 20px 0; }
+    .avatar, .info { float: left; }
+    .avatar, .avatar > img { display: block; }
+    .avatar { background: #fff; padding: 5px 5px 15px 5px; margin-right: 15px; }
+    .info {}
+        .info h3 { margin-top: 0; }
+        .additional-info {}
+        .resume {}
+        .contact {}
+        .talk {}
 
 /**
  * FOOTER

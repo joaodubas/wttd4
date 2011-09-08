@@ -8,6 +8,7 @@ urlpatterns = patterns('django.views.generic.simple',
 
 admin.autodiscover()
 urlpatterns += patterns('',
+    url(r'^', include('core.urls')),
     url(r'^inscricao/', include('subscription.urls', namespace='subscription')),
     url(r'^admin/', include(admin.site.urls)),
 )
