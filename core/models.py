@@ -5,8 +5,7 @@ from django.utils.translation import ugettext as _
 from core.signals import slugify_name
 import hashlib
 import urllib
-
-# import datetime
+import datetime
 
 class Speaker(models.Model):
     name = models.CharField(max_length=256, verbose_name=_(u'Nome'))
@@ -14,7 +13,6 @@ class Speaker(models.Model):
     url = models.URLField(verify_exists=False, verbose_name=_(u'Site'))
     description = models.TextField(blank=True, verbose_name=_(u'Descrição'))
     avatar = models.FileField(upload_to='palestrante', blank=True, null=True, verbose_name=_(u'Avatar'))
-    # desafio: colocar email e buscar o gravatar do palestrante
 
     class Meta:
         ordering = ('name', )
@@ -81,55 +79,55 @@ class Contact(models.Model):
                                                         'value': self.value}
 
 
-# class PeriodManager(models.Manager):
-#     midday = datetime.time(12)
+class PeriodManager(models.Manager):
+    midday = datetime.time(12)
 
-#     def at_morning(self):
-#         qs = self.filter(start_time__lt=self.midday)
-#         qs = qs.order_by('start_time')
-#         return qs
+    def at_morning(self):
+        qs = self.filter(start_time__lt=self.midday)
+        qs = qs.order_by('start_time')
+        return qs
     
-#     def at_afternoon(self):
-#         qs = self.filter(start_time__gte=self.midday)
-#         qs = qs.order_by('start_time')
-#         return qs
+    def at_afternoon(self):
+        qs = self.filter(start_time__gte=self.midday)
+        qs = qs.order_by('start_time')
+        return qs
 
 
-# class Talk(models.Model):
-#     title = models.CharField(max_length=256, verbose_name=_(u'título'))
-#     description = models.TextField(verbose_name=_(u'descrição'))
-#     start_time = models.TimeField(blank=True, verbose_name=_(u'hora de início'))
-#     speakers = models.ManyToManyField('Speaker', verbose_name=_(u'palestrantes'))
+class Talk(models.Model):
+    title = models.CharField(max_length=256, verbose_name=_(u'título'))
+    description = models.TextField(verbose_name=_(u'descrição'))
+    start_time = models.TimeField(blank=True, verbose_name=_(u'hora de início'))
+    speakers = models.ManyToManyField('Speaker', verbose_name=_(u'palestrantes'))
 
-#     objects = PeriodManager()
+    objects = PeriodManager()
 
-#     class Meta:
-#         ordering = ('start_time', 'title', )
-#         verbose_name = _(u'palestra')
-#         verbose_name_plural = _(u'palestras')
+    class Meta:
+        ordering = ('start_time', 'title', )
+        verbose_name = _(u'palestra')
+        verbose_name_plural = _(u'palestras')
     
-#     def __unicode__(self):
-#         return self.title
+    def __unicode__(self):
+        return self.title
 
 
-# class Course(Talk):
-#     slots = models.IntegerField()
-#     notes = models.TextField()
+class Course(Talk):
+    slots = models.IntegerField()
+    notes = models.TextField()
 
-#     objects = PeriodManager()
+    objects = PeriodManager()
 
 
-# class Media(models.Model):
-#     MEDIAS = (
-#         ('SL', 'SlideShare'),
-#         ('YT', 'Youtube'),
-#     )
+class Media(models.Model):
+    MEDIAS = (
+        ('SL', 'SlideShare'),
+        ('YT', 'Youtube'),
+    )
 
-#     talk = models.ForeignKey('Talk')
-#     type = models.CharField(max_length=2, choices=MEDIAS)
-#     title = models.CharField(max_length=256)
-#     description = models.TextField(blank=True)
+    talk = models.ForeignKey('Talk')
+    type = models.CharField(max_length=2, choices=MEDIAS)
+    title = models.CharField(max_length=256)
+    description = models.TextField(blank=True)
 
-#     def __unicode__(self):
-#         return '%s <%s>' % (self.title, self.talk.title, )
+    def __unicode__(self):
+        return '%s <%s>' % (self.title, self.talk.title, )
 

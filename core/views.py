@@ -23,3 +23,15 @@ def detail_speaker(request, pk, slug, template="core/detail_speaker.html"):
 
     response = { 'speaker': speaker, 'show_all_info': True }
     return direct_to_template(request, template, response)
+
+def list_talk(request):
+    pass
+
+def detail_talk(request):
+    pass
+
+def list_slot(request):
+    pass
+
+def detail_slot(request):
+    pass
