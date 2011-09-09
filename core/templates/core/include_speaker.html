@@ -2,9 +2,10 @@
     <a class="avatar" href="{{ speaker.get_absolute_url }}"><img src="{{ speaker.get_avatar }}" width="80" height="80" alt="{{ speaker.name }}" /></a>
     <div class="info">
         <div class="additional-info resume">
-            <h3>Bio:</h3>
+            <h3>{{ speaker.name }}</h3>
+            <h4>Bio:</h4>
             <p>{{ speaker.description }}</p>
-            <h3>Site:</h3>
+            <h4>Site:</h4>
             <p><a href="{{ speaker.url }}">{{ speaker.url }}</a></p>
         </div>
         {% if show_all_info %}
