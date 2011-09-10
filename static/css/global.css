@@ -77,10 +77,11 @@ a:hover, a:active, .link:hover { color: #64a8d1; text-decoration: none; text-sha
     margin: 0; padding: 0;
 }
 .horizontal { overflow: hidden; }
-.item {
+.horizontal .item {
     float: left;
     margin: 0 5px; padding: 0;
 }
+.vertical .item { margin: 5px 0; }
 .item:first-child { margin-left: 0; }
 .item:last-child { margin-right: 0; }
 .item .navigate { display: block; padding: 0 5px; text-decoration: none; }
@@ -215,7 +216,9 @@ nav { background-color: rgba(97, 97, 97, 0.125); font-size: 0.85em; line-height:
     .avatar, .avatar > img { display: block; }
     .avatar { background: #fff; padding: 5px 5px 15px 5px; margin-right: 15px; }
     .info {}
-        .info h3, .info h4 { margin-top: 0; }
+        .info h3, .info h4 { margin: 1em 0 0.875em 0; }
+        .info h3 { margin-top: 0; }
+        .info p, .contact { margin: 0; }
         .additional-info {}
         .resume {}
         .contact {}

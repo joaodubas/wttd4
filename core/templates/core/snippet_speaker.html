@@ -1,0 +1,39 @@
+<div class="speaker cf">
+    <a class="avatar" href="{{ speaker.get_absolute_url }}"><img src="{{ speaker.get_avatar }}" width="80" height="80" alt="{{ speaker.name }}" /></a>
+    <div class="info">
+        <div class="additional-info resume">
+            <h3><a href="{{ speaker.get_absolute_url }}">{{ speaker.name }}</a></h3>
+            <h4>Bio:</h4>
+            <p>{{ speaker.description }}</p>
+            <h4>Site:</h4>
+            <p><a href="{{ speaker.url }}">{{ speaker.url }}</a></p>
+        </div>
+        {% if show_all_info %}
+            <h4>Contato:</h4>
+            <ul class="vertical additional-info contact">
+                {% for contact in speaker.contact_set.all %}
+                    <li class="item">
+                        <strong>{{ contact.get_kind_display }}</strong>
+                        {% ifequal contact.kind 'E' %}
+                            <a href="mailto:{{ contact.value }}">{{ contact.value }}</a>
+                        {% else %}
+                            {{ contact.value }}
+                        {% endifequal %}
+                    </li>
+                {% empty %}
+                    <li class="item message info">Nenhum contato cadastrado.</li>
+                {% endfor %}
+            </ul>
+            <h4>Palestras:</h4>
+            <dl class="additional-info talk">
+                {% for talk in speaker.talk_set.all %}
+                    <dt><a href="{{ talk.get_absolute_url }}">{{ talk.title }}</a></dt>
+                    <dd><strong>Resumo</strong>: {{ talk.description }}</dd>
+                    <dd><strong>Início</strong>: {{ talk.start_time }}</dd>
+                {% empty %}
+                    <dt class="item">Nenhuma palestra cadastrada.</dt>
+                {% endfor %}
+            </dl>
+        {% endif %}
+    </div>
+</div>

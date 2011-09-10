@@ -114,6 +114,10 @@ class Talk(models.Model):
     
     def __unicode__(self):
         return self.title
+    
+    @models.permalink
+    def get_absolute_url(self):
+        pass
 
 
 class Course(Talk):
