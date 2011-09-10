@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 from django.contrib import admin
 from django.utils.translation import ugettext as _
-from core.models import Speaker, Contact
+from django.core.urlresolvers import reverse
+from core.models import Speaker, Contact, Talk, Course, Media
 
 class ContactTabularInline(admin.TabularInline):
     model = Contact
@@ -33,6 +34,30 @@ class SpeakerAdmin(admin.ModelAdmin):
     fax.short_description = _(u'Fax')
 
 
+class MediaTabularInline(admin.TabularInline):
+    model = Media
+    extras = 1
+
+
+class TalkAdmin(admin.ModelAdmin):
+    list_display = ('title', 'start_time', 'list_speakers', )
+    inlines = (MediaTabularInline, )
+
+    def list_speakers(self, obj):
+        if not obj.speakers.all().count():
+            return '<strong>&emdash;</strong>'
+
+        to_speaker = '<a href="%s">%s</a>'
+        speakers = [to_speaker % (reverse('admin:core_speaker_change', args=[speaker.pk]), speaker.name) for speaker in obj.speakers.all()]
+        return ', '.join(speakers)
+    list_speakers.short_description = _(u'Palestrantes')
+    list_speakers.allow_tags = True
+
+
+class CourseAdmin(TalkAdmin):
+    list_display = TalkAdmin.list_display + ('slots', )
+
+
 admin.site.register(Speaker, SpeakerAdmin)
-
-
+admin.site.register(Talk, TalkAdmin)
+admin.site.register(Course, CourseAdmin)
