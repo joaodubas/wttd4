@@ -83,11 +83,17 @@ class PeriodManager(models.Manager):
     midday = datetime.time(12)
 
     def at_morning(self):
+        """
+        Return a queryset of talks that will be held on the morning
+        """
         qs = self.filter(start_time__lt=self.midday)
         qs = qs.order_by('start_time')
         return qs
     
     def at_afternoon(self):
+        """
+        Return a queryset of talks that will be held on the afternoon
+        """
         qs = self.filter(start_time__gte=self.midday)
         qs = qs.order_by('start_time')
         return qs
@@ -111,23 +117,27 @@ class Talk(models.Model):
 
 
 class Course(Talk):
-    slots = models.IntegerField()
-    notes = models.TextField()
+    slots = models.IntegerField(verbose_name=_(u'vagas'))
+    notes = models.TextField(verbose_name=_(u'observações'))
 
     objects = PeriodManager()
 
+    class Meta:
+        verbose_name = _(u'curso')
+        verbose_name_plural = _(u'cursos')
 
-class Media(models.Model):
-    MEDIAS = (
-        ('SL', 'SlideShare'),
-        ('YT', 'Youtube'),
-    )
 
-    talk = models.ForeignKey('Talk')
-    type = models.CharField(max_length=2, choices=MEDIAS)
-    title = models.CharField(max_length=256)
-    description = models.TextField(blank=True)
+# class Media(models.Model):
+#     MEDIAS = (
+#         ('SL', 'SlideShare'),
+#         ('YT', 'Youtube'),
+#     )
 
-    def __unicode__(self):
-        return '%s <%s>' % (self.title, self.talk.title, )
+#     talk = models.ForeignKey('Talk', verbose_name=_(u'palestra'))
+#     type = models.CharField(max_length=2, choices=MEDIAS, verbose_name=_(u'tipo de mídia'))
+#     title = models.CharField(max_length=256, verbose_name=_(u'título'))
+#     description = models.TextField(blank=True, verbose_name=_(u'descrição'))
+
+#     def __unicode__(self):
+#         return '%s <%s>' % (self.title, self.talk.title, )
 
