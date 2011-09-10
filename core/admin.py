@@ -2,7 +2,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
-from core.models import Speaker, Contact, Talk, Course, Media
+from core.models import Speaker, Contact, Talk, Course
+from multimedia.admin import MediaTabularInline
 
 class ContactTabularInline(admin.TabularInline):
     model = Contact
@@ -32,11 +33,6 @@ class SpeakerAdmin(admin.ModelAdmin):
     def fax(self, obj):
         return self._contact(obj, 'F')
     fax.short_description = _(u'Fax')
-
-
-class MediaTabularInline(admin.TabularInline):
-    model = Media
-    extras = 1
 
 
 class TalkAdmin(admin.ModelAdmin):
