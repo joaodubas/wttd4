@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 from django.views.generic.simple import direct_to_template
 from django.utils.translation import ugettext as _
+from django.shortcuts import get_object_or_404
 from django.http import Http404
-from core.models import Speaker
+from core.models import Speaker, Talk, Course
 
 def list_speaker(request, template="core/list_speaker.html"):
     """
@@ -24,14 +25,40 @@ def detail_speaker(request, pk, slug, template="core/detail_speaker.html"):
     response = { 'speaker': speaker, 'show_all_info': True }
     return direct_to_template(request, template, response)
 
-def list_talk(request):
-    pass
+def list_talk(request, template="core/list_talk.html"):
+    """
+    List all talks that are registered on eventex
+    """
+    response = {
+        'morning': Talk.objects.at_morning(),
+        'afternoon': Talk.objects.at_afternoon(),
+    }
+    return direct_to_template(request, template, response)
 
-def detail_talk(request):
-    pass
+def detail_talk(request, pk, template="core/detail_talk.html"):
+    """
+    Get the detail about a talk
+    """
+    response = {
+        'talk': get_object_or_404(Talk, pk=pk)
+    }
+    return direct_to_template(request, template, response)
 
-def list_slot(request):
-    pass
+def list_course(request, template="core/list_course.html"):
+    """
+    List all courses that are registered on eventex
+    """
+    response = {
+        'morning': Course.objects.at_morning(),
+        'afternoon': Course.objects.at_afternoon(),
+    }
+    return direct_to_template(request, template, response)
 
-def detail_slot(request):
-    pass
+def detail_course(request, pk, template="core/detail_course.html"):
+    """
+    Get the detail about a course
+    """
+    response = {
+        'talk': get_object_or_404(Course, pk=pk)
+    }
+    return direct_to_template(request, template, response)

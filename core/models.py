@@ -117,7 +117,7 @@ class Talk(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        pass
+        return ('detail_talk', (), {'pk': self.pk})
 
 
 class Course(Talk):
@@ -129,4 +129,8 @@ class Course(Talk):
     class Meta:
         verbose_name = _(u'curso')
         verbose_name_plural = _(u'cursos')
+
+    @models.permalink    
+    def get_absolute_url(self):
+        return ('detail_course', (), {'pk': self.pk})
 

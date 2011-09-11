@@ -6,8 +6,8 @@ urlpatterns = patterns('core.views',
 )
 
 urlpatterns += patterns('core.views',
-    url(r'^palestra/detalhe/(?P<pk>[\d]+)/(?P<slug>[\w\-]+)/$', 'detail_talk', name='detail_talk'),
+    url(r'^palestra/detalhe/(?P<pk>[\d]+)/$', 'detail_talk', name='detail_talk'),
     url(r'^palestra/$', 'list_talk', name='list_talk'),
-    url(r'^slot/detalhe/$', 'detail_slot', name='detail_slot'),
-    url(r'^slot/$', 'detail_slot', name='detail_slot'),
+    url(r'^curso/detalhe/(?P<pk>[\d]+)/$', 'detail_course', name='detail_course'),
+    url(r'^curso/$', 'list_course', name='list_course'),
 )
