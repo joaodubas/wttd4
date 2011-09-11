@@ -59,6 +59,6 @@ def detail_course(request, pk, template="core/detail_course.html"):
     Get the detail about a course
     """
     response = {
-        'talk': get_object_or_404(Course, pk=pk)
+        'course': get_object_or_404(Course, pk=pk)
     }
     return direct_to_template(request, template, response)

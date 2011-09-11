@@ -1,1 +1,16 @@
 {% extends "core/base_talk.html" %}
+
+{% block content %}
+    <dl class="talk">
+        {% include "core/snippet_talk.html" %}
+        <dd>
+            <ul class="horizontal speakers">
+                {% for speaker in talk.speakers.all %}
+                    <li class="item"><a href="{{ speaker.get_absolute_url }}">{{ speaker.name }}</a></li>
+                {% empty %}
+                    <li class="item">Nenhum palestrante cadastrado!</li>
+                {% endfor %}
+            </ul>
+        </dd>
+    </dl>
+{% endblock content %}
