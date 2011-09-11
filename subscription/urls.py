@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, url
-from vendor.route import route
+from vendor.urls.route import route
 
 urlpatterns = patterns('subscription.views',
     route(r'^nova/$', GET='new', POST='create', name='subscribe'),
