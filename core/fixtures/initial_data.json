@@ -16,5 +16,78 @@
             "email": "joao.dubas@gmail.com", 
             "date_joined": "2011-08-16 01:46:58"
         }
+    },
+    {
+        "pk": 1, 
+        "model": "core.speaker", 
+        "fields": {
+            "url": "http://www.dbsdev.com.br/", 
+            "description": "Eu sou eu e sou careca.", 
+            "name": "Joao Paulo Dubas", 
+            "avatar": "", 
+            "slug": "joao-paulo-dubas"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.contact", 
+        "fields": {
+            "kind": "E", 
+            "speaker": 1, 
+            "value": "joao.dubas@gmail.com"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.contact", 
+        "fields": {
+            "kind": "E", 
+            "speaker": 1, 
+            "value": "joao_dubas@yahoo.com.br"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.contact", 
+        "fields": {
+            "kind": "P", 
+            "speaker": 1, 
+            "value": "11-12345678"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.talk", 
+        "fields": {
+            "start_time": "10:00:00", 
+            "description": "Como podemos aprimorar a arte da procrastina\u00e7\u00e3o e aumentar nosso \u00f3cio produtivo.", 
+            "speakers": [
+                1
+            ], 
+            "title": "Como procrastinar em 10 passos"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.talk", 
+        "fields": {
+            "start_time": "16:00:00", 
+            "description": "Curso avan\u00e7ado de procrastina\u00e7\u00e3o", 
+            "speakers": [
+                1
+            ], 
+            "title": "Procastiando ainda mais"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.course", 
+        "fields": {
+            "slots": 20, 
+            "notes": "N\u00e3o perca", 
+            "speakers": [
+                1
+            ]
+        }
     }
 ]
