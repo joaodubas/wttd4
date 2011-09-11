@@ -142,7 +142,11 @@ nav { background-color: rgba(97, 97, 97, 0.125); font-size: 0.85em; line-height:
 .navigate:link, .navigate:visited { color: #0969a3; text-shadow: 1px 1px 1px rgba(25,25,25,0.75); }
 .navigate:hover, .navigate:active { background-color: #1c0772; color: #3d9ad1; text-shadow: -1px -1px 1px rgba(25,25,25,0.75); }
 
-#home .to-home > .navigate, #subscribe .to-subscribe > .navigate, #speaker .to-speaker > .navigate {
+#home .to-home > .navigate,
+#subscribe .to-subscribe > .navigate,
+#speaker .to-speaker > .navigate,
+#talk .to-talk > .navigate,
+#course .to-course > .navigate {
     background-color: rgba(175, 175, 175, 0.25);
     color: #bbb;
     text-shadow: -1px -1px 1px rgba(25,25,25,0.75);
