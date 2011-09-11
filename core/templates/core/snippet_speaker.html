@@ -27,9 +27,7 @@
             <h4>Palestras:</h4>
             <dl class="additional-info talk">
                 {% for talk in speaker.talk_set.all %}
-                    <dt><a href="{{ talk.get_absolute_url }}">{{ talk.title }}</a></dt>
-                    <dd><strong>Resumo</strong>: {{ talk.description }}</dd>
-                    <dd><strong>Início</strong>: {{ talk.start_time }}</dd>
+                    {% include "core/snippet_talk.html" %}
                 {% empty %}
                     <dt class="item">Nenhuma palestra cadastrada.</dt>
                 {% endfor %}

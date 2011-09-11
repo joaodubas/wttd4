@@ -1,0 +1,20 @@
+{% extends "core/base_talk.html" %}
+
+{% block content %}
+    <h3>Manhã</h3>
+    <dl class="talk">
+        {% for talk in morning %}
+            {% include "core/snippet_talk.html" %}
+        {% empty %}
+            <dt class="message">Não há palestras para o período da manhã.</dt>
+        {% endfor %}
+    </dl>
+    <h3>Tarde</h3>
+    <dl class="talk">
+        {% for talk in afternoon %}
+            {% include "core/snippet_talk.html" %}
+        {% empty %}
+            <dt class="message">Não há palestras para o período da tarde.</dt>
+        {% endfor %}
+    </dl>
+{% endblock content %}
